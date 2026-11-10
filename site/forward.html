@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forward | Review Signal</title>
+<meta name="description" content="Weekly collection of Steam review totals for a future out-of-sample test.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='1' y='1' width='20' height='20' rx='5' fill='%23fcfcfb' stroke='%230b0b0b' stroke-width='1.6'/%3E%3Cpath d='M5 14 L9 10 L12 12.5 L17 7' fill='none' stroke='%232a78d6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/data.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body data-page="forward">
+<main>
+
+<div class="page-head"><span class="eyebrow">Collecting new data from now on</span><h1>Forward collection</h1>
+<p class="lede">Every Sunday at 11:00 (when this PC is on) a scheduled task records the running review totals for about 2,600 tracked games from SteamSpy. The difference between snapshots gives new reviews per quarter. After a year or two this allows a test on quarters that did not exist when the rules were written.</p></div>
+<section class="grid g2"><div class="panel"><h2>Snapshots so far</h2><div id="fwdRuns" style="margin-top:var(--sp-4)"></div></div>
+<div class="panel"><h2>Managing the task</h2><dl class="kv" style="margin-top:var(--sp-4)"><dt>Task name</dt><dd class="mono">ReviewSignalWeeklySnapshot</dd>
+<dt>Output</dt><dd class="mono">D:\review-signal-nowcast\forward\</dd><dt>Run now</dt><dd class="mono">schtasks /Run /TN ReviewSignalWeeklySnapshot</dd>
+<dt>Remove</dt><dd class="mono">schtasks /Delete /TN ReviewSignalWeeklySnapshot /F</dd></dl></div></section>
+</main>
+</body>
+</html>

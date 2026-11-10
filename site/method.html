@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method | Review Signal</title>
+<meta name="description" content="Data sources, frozen rules and company selection.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='1' y='1' width='20' height='20' rx='5' fill='%23fcfcfb' stroke='%230b0b0b' stroke-width='1.6'/%3E%3Cpath d='M5 14 L9 10 L12 12.5 L17 7' fill='none' stroke='%232a78d6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/data.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body data-page="method">
+<main>
+
+<div class="page-head"><span class="eyebrow">How the work was done</span><h1>Method</h1>
+<p class="lede">Every test was written down and frozen, with file fingerprints, before any sales figure for its companies was fetched. Companies were chosen by written rules about data availability, never by their results.</p></div>
+<section class="grid g2">
+  <div class="panel"><h2>Data</h2><dl class="kv" style="margin-top:var(--sp-4)">
+    <dt>Amazon reviews</dt><dd>McAuley-Lab Amazon Reviews 2023 (research dataset)</dd>
+    <dt>Steam reviews</dt><dd>113.9M reviews to Nov 2023 (CC BY-NC 4.0)</dd>
+    <dt>Game publishers</dt><dd>Steam games metadata, 124,146 games (MIT)</dd>
+    <dt>Sales</dt><dd>SEC filings, Japanese results summaries, Nordic interim reports, UK results announcements, company releases</dd>
+    <dt>Tone model</dt><dd>nlptown BERT sentiment model, run offline</dd></dl></div>
+  <div class="panel"><h2>Rules that protect the result</h2><ul class="list yes" style="margin-top:var(--sp-4)">
+    <li>Sales figures as first reported, or the prior-year figure printed in the same report.</li>
+    <li>Each company scored by a model fitted only on other companies.</li>
+    <li>Two simple rules as the bar to beat; three-part pass mark fixed in advance.</li>
+    <li>Every quarter's prior-year figure cross-checked against the figure reported a year earlier.</li>
+    <li>No paid data, no logging in, no getting around any website's blocks.</li></ul></div>
+</section>
+<section><div class="sec-head"><div><h2>Company list for study 4</h2><p>Fixed and fingerprinted before the test ran, including why twelve candidates were left out.</p></div></div>
+  <div class="panel"><pre class="mono small" id="universe" style="white-space:pre-wrap"></pre></div></section>
+</main>
+</body>
+</html>

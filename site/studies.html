@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studies | Review Signal</title>
+<meta name="description" content="Every study's question, data and result.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Crect x='1' y='1' width='20' height='20' rx='5' fill='%23fcfcfb' stroke='%230b0b0b' stroke-width='1.6'/%3E%3Cpath d='M5 14 L9 10 L12 12.5 L17 7' fill='none' stroke='%232a78d6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/data.js" defer></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body data-page="studies">
+<main>
+
+<div class="page-head"><span class="eyebrow">Six pieces of work</span><h1>Studies</h1>
+<p class="lede">Studies 1 to 3 asked whether reviews predict next quarter's sales direction. Study 4 asked whether review counts estimate the quarter that just ended, before the company reports it. Study 5 combined every signal in one model. Study 6 repeats study 4 on new, PC-focused publishers that report every six months.</p></div>
+<section class="grid g2">
+  <div class="panel"><span class="eyebrow">Studies 1 to 3 · forecasting</span><h2 style="margin-top:6px">One company at a time</h2>
+  <div class="table-wrap" style="margin-top:var(--sp-4)"><table><thead><tr><th>Study</th><th class="num">Quarters</th><th class="num">Reviews right</th><th class="num">Simple rule right</th></tr></thead><tbody>
+  <tr><td>1 · Logitech (Amazon)</td><td class="num">49</td><td class="num">51%</td><td class="num">75%</td></tr>
+  <tr><td>2 · AeroGrow (Amazon, about half of sales)</td><td class="num">28</td><td class="num">36%</td><td class="num">68%</td></tr>
+  <tr><td>3 · Paradox (Steam is the store)</td><td class="num">20</td><td class="num">65%</td><td class="num">67-70%</td></tr></tbody></table></div>
+  <p class="chart-note">"Right" means the predicted direction (up or down versus a year earlier) matched what the company later reported.</p></div>
+  <div class="panel"><span class="eyebrow">Study 4 · nowcasting</span><h2 style="margin-top:6px">13 publishers, pass mark</h2><div id="ncCrit" style="margin-top:var(--sp-4)"></div>
+  <p class="chart-note">All three conditions had to hold. Each company was scored by a model fitted only on the other twelve.</p></div>
+</section>
+<section><div class="sec-head"><div><h2>Study 4, company by company</h2><p>Average miss in percentage points of sales growth, with and without the review signal, and how closely review growth and sales growth moved together.</p></div></div>
+  <div class="panel" id="ncTable"></div></section>
+<section class="grid g2">
+  <div class="panel"><span class="eyebrow">Study 5 · exploratory</span><h2 style="margin-top:6px">Sales prediction model</h2>
+  <p class="ink2">A model using review growth, reviews of newly launched games, launch counts, recommendation share and past growth. It missed by more on average than the simple rule. Details and an interactive view are on the <a href="model.html">Model</a> page.</p></div>
+  <div class="panel"><span class="eyebrow">Study 6 · half-year, new companies</span><h2 style="margin-top:6px">PC-focused publishers</h2><div id="hyBox" style="margin-top:var(--sp-4)"></div></div>
+</section>
+</main>
+</body>
+</html>
