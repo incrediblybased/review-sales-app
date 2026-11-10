@@ -36,8 +36,6 @@
     top.className = "top";
     top.innerHTML = `<div class="inner">
       <a class="brand" href="index.html" aria-label="Review Signal home">
-        <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M5 14 L9 10 L12 12.5 L17 7" fill="none" stroke="${css("--s1")}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Review Signal</a>
       <nav class="nav" aria-label="Pages">${PAGES.map(([h, t]) => `<a href="${h}"${h === here || (here === "" && h === "index.html") ? ' aria-current="page"' : ""}>${t}</a>`).join("")}</nav>
       <button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme">Theme</button></div>`;
@@ -50,10 +48,10 @@
     const urlTheme = new URLSearchParams(location.search).get("theme");
     const saved = urlTheme === "light" || urlTheme === "dark" ? urlTheme : (() => { try { return localStorage.getItem("rs-theme"); } catch (e) { return null; } })();
     if (saved) document.documentElement.dataset.theme = saved;
-    const label = () => { $("#themeBtn").textContent = (document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark" ? "Light" : "Dark"; };
+    const label = () => { $("#themeBtn").textContent = (document.documentElement.dataset.theme || "light") === "dark" ? "Light" : "Dark"; };
     label();
     $("#themeBtn").addEventListener("click", () => {
-      const cur = document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const cur = document.documentElement.dataset.theme || "light";
       const next = cur === "dark" ? "light" : "dark";
       const apply = () => { document.documentElement.dataset.theme = next; try { localStorage.setItem("rs-theme", next); } catch (e) {} label(); rerenderAll(); };
       if (document.startViewTransition && !reduce) document.startViewTransition(apply); else apply();
@@ -277,10 +275,8 @@
         <p class="ink2">Across ${tested} completed tests, the best predictor of a company's sales growth was its own recent growth. Reviews track sales loosely (strongest for PC-focused game publishers), but adding them did not make estimates more accurate on companies the model had not seen.</p></div>`;
       $("#stats").innerHTML = [["Studies", rows.length], ["Companies tested", 16], ["Reviews analysed (M)", 32], ["Passed the frozen test", wins]]
         .map(([k, v]) => `<div class="panel stat"><span class="label">${k}</span><span class="value" data-count="${v}">${v}</span></div>`).join("");
-      $("#studyCards").innerHTML = rows.map((r) => `<div class="panel"><span class="eyebrow">Study ${r.id} · ${r.plat}${r.explor ? " · exploratory" : ""}</span>
-        <h3 style="margin:6px 0">${esc(r.name)}</h3><p class="small ink2">${esc(r.q)}</p>
-        <dl class="kv"><dt>Data</dt><dd>${esc(r.n)}</dd><dt>With reviews</dt><dd>${esc(r.sig)}</dd><dt>Simple rule</dt><dd>${esc(r.base)}</dd>
-        <dt>Verdict</dt><dd>${r.under ? '<span class="pill na">underpowered</span>' : r.ok ? '<span class="pill hit">signal</span>' : '<span class="pill miss">no usable signal</span>'}</dd></dl></div>`).join("");
+      $("#studyCards").innerHTML = `<div class="table-wrap studies"><table><thead><tr><th>Study</th><th>Question</th><th class="num">Data</th><th class="num">With reviews</th><th class="num">Simple rule</th><th>Verdict</th></tr></thead><tbody>${rows.map((r) =>
+        `<tr><td><b>${esc(r.name)}</b><br><span class="small muted">Study ${r.id}, ${r.plat}${r.explor ? ", exploratory" : ""}</span></td><td class="wrap small">${esc(r.q)}</td><td class="num">${esc(r.n)}</td><td class="num">${esc(r.sig)}</td><td class="num">${esc(r.base)}</td><td>${r.under ? "underpowered" : r.ok ? "signal" : "no usable signal"}</td></tr>`).join("")}</tbody></table></div>`;
       countUp();
     },
     studies() {
@@ -322,7 +318,7 @@
         const lab = { y_prev: "Last published sales growth", y_lag4: "Sales growth a year earlier", x_reviews: "Steam review growth", x_new_reviews: "Growth in reviews of new games",
           x_launches: "Change in number of launches", d_rec: "Change in share recommending", pandemic: "Pandemic quarter" };
         $("#explain").innerHTML = `<div class="table-wrap"><table><thead><tr><th>Input</th><th class="num">Value</th></tr></thead><tbody>${Object.keys(lab).map((k) =>
-          `<tr><td>${lab[k]}</td><td class="num mono">${k === "pandemic" ? (r[k] ? "yes" : "no") : k === "d_rec" ? fmt.sd3(r[k]) : lgPct(r[k])}</td></tr>`).join("")}</tbody></table></div>
+          `<tr><td>${lab[k]}</td><td class="num">${k === "pandemic" ? (r[k] ? "yes" : "no") : k === "d_rec" ? fmt.sd3(r[k]) : lgPct(r[k])}</td></tr>`).join("")}</tbody></table></div>
           <dl class="kv" style="margin-top:var(--sp-4)"><dt>Model estimate</dt><dd>${lgPct(r[best])}</dd><dt>Simple rule</dt><dd>${lgPct(r.B1_last_growth)}</dd><dt>Actual (reported later)</dt><dd><b>${lgPct(r.actual_y)}</b></dd></dl>`;
       };
       sel.addEventListener("change", draw); $("#quarter").addEventListener("change", explain); draw();

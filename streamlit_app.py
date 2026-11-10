@@ -9,7 +9,7 @@ import streamlit.components.v1 as components
 SITE = pathlib.Path(__file__).parent / "site"
 PAGES = ["index", "studies", "model", "method", "forward"]
 
-st.set_page_config(page_title="Review Signal", page_icon="📈", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Review Signal", page_icon=str(pathlib.Path(__file__).parent / "favicon.png"), layout="wide", initial_sidebar_state="collapsed")
 st.markdown("""<style>
 header[data-testid="stHeader"], [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"] {display:none}
 .block-container {padding:0 !important; max-width:100% !important}
@@ -51,7 +51,6 @@ new ResizeObserver(fit).observe(document.documentElement); addEventListener("loa
 """
 
 
-@st.cache_data
 def bundle(start: str) -> str:
     rs = {"css": (SITE / "assets/style.css").read_text(encoding="utf-8"),
           "data": (SITE / "assets/data.js").read_text(encoding="utf-8"),
